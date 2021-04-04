@@ -35,18 +35,13 @@ WHERE area >= ALL(SELECT area FROM world y WHERE y.continent=x.continent)
 SELECT continent, name
 FROM world x
 WHERE name = (SELECT name 
-             FROM world y  
-             WHERE x.continent = y.continent
-             ORDER BY name 
-             LIMIT 1) 
+FROM world y  WHERE x.continent = y.continent ORDER BY name  LIMIT 1) 
 
 SELECT name, continent, population
 FROM world
 WHERE continent IN (SELECT continent
-                   FROM world y
-                   WHERE 25000000 > (SELECT MAX(population)
-                                     FROM world z
-                                     WHERE z.continent = y.continent)) 
+FROM world y WHERE 25000000 > (SELECT MAX(population)
+FROM world z WHERE z.continent = y.continent)) 
 
 SELECT name, continent
 FROM world x
